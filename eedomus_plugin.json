@@ -1,0 +1,81 @@
+{
+	"plugin_id": "pushbutton",
+	"name_fr": "PushButton",
+	"icon": "pushbutton.png",
+	"version": "1.0",
+	"creation_date": "2018-02-12",
+	"modification_date": "2018-02-12",
+	"author": "Influman",
+	"description_fr": "Simulation de bouton poussoir (Etat 1 puis 2, 500ms plus tard)",
+	"description_en": "",
+	"description_es": "",
+	"description_it": "",
+	"description_de": "",
+	"forum_link": "",
+	"parameters":
+	[
+		{
+			"parameter": "NAME", 
+			"description": "Nom du périphérique",
+			"xtype": "textfield",
+			"default_value": "Appareil 1",
+			"field": "width:200, allowBlank:false"
+		},
+		{
+			"parameter": "device_api",
+			"description": "Périphérique à commander",
+			"xtype": "combo",
+			"field": "store : getCombo('/json/list_all.php?value_type=list'), displayField: 'label', valueField: 'id', typeAhead: true, forceSelection: true, triggerAction: 'all', selectOnFocus: true, editable: false, shadow:true, mode: 'local', width: 250, listWidth: 300, allowBlank: true"
+    },
+    {
+      "parameter": "value_State1",
+      "description": "Valeur quand appuyé",
+			"xtype": "textfield",
+			"default_value": "100",
+			"field": "width:200, allowBlank:false"
+    },
+    {
+      "parameter": "value_State2",
+      "description": "Valeur quand relâché",
+			"xtype": "textfield",
+			"default_value": "0",
+			"field": "width:200, allowBlank:false"
+    }
+	],
+	"scripts":
+	[
+		{
+			"name": "pushbutton.php"
+		}
+	],
+	"devices": 
+  [
+		
+{
+			"device_id": "periph",
+			"module_id": "41",
+			"type": "http",
+			"name_fr": "plugin.parameters.NAME (pushbutton)",
+			"icon": "pushbutton.png",
+			"utilisation_id": "43",
+			"parameters":
+			{
+				"VAR1": "plugin.parameters.device_api",
+				"VAR2": "plugin.parameters.value_State1",
+				"VAR3": "plugin.parameters.value_State2",
+				"value_type": "list",
+				"ignore_errors": 3,
+				"RAW_URL": "",
+				"RAW_XPATH": "",
+				"POLLING": "0"
+			},
+			"values":
+			[
+				{ "value": "1", "description": "Impulsion", "icon": "pushbutton.png", "http_url": "http://localhost/script/?exec=pushbutton.php", "http_type": "GET",  "http_params": "&periph=[VAR1]&val1=[VAR2]&val2=[VAR3]" }
+			]
+    }
+  ]
+}
+
+
+
